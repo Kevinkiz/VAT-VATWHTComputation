@@ -1,0 +1,407 @@
+<?php include('server.php') ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VAT & VAT WHT Tax Computation</title>
+  <style>
+    body {
+      background-color: brown;
+    }
+    table {
+      background-color: grey;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="color: white; font-weight: bold;">VAT & VAT WHT Tax Computation.</h1>
+
+  
+	<!-- Tab links -->
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'UGX')">UGX</button>
+                <button class="tablinks" onclick="openTab(event, 'USD')">USD</button>
+        </div>
+
+    <!-- Tab content -->
+	<div id="UGX" class="tabcontent">
+
+  <form id="myForm" method="post" action="Connect2.php">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td>
+          <input type="text" id="Name-input" name="FirmName" value="N/A">
+        </td>
+      </tr>
+      <tr>
+        <td>Date</td>
+        <td>
+          <input type="date" id="Date-Period-input" name="Date_Period" value="N/A">
+        </td>
+      </tr>
+    </table>
+
+    <table border="1">
+      <tr>
+        <th>DETAILS</th>
+        <th>GROSS AMOUNT (UGX)</th>
+        <th>Inc Tax WHT @ 6%/15% (UGX)</th>
+        <th>VAT WHT @ 6%/18% (UGX)</th>
+        <th>Net Amount Paid (UGX)</th>
+      </tr>
+      <tr>
+        <td>
+          <label for="resident">Resident</label>
+            <input type="radio" id="resident" name="residency" value="resident">
+            <label for="non-resident">Non-Resident</label>
+            <input type="radio" id="non-resident" name="residency" value="non-resident">
+
+        </td>
+        <td>
+          <input type="number" id="GrossAmount-input" name="Gross Amount" value="0" step="0.01">
+        </td>
+        <td>
+          <input type="number" id="IncTaxWHT-input" name="Income Tax WHT @ 6%" value="0" step="0.01" readonly>
+        </td>
+        <td>
+          <input type="number" id="VATWHT-input" name="VAT WHT @ 6%" value="0" step="0.01" readonly>
+        </td>
+        <td>
+          <input type="number" id="NetAmountPaid-input" name="Net Amount Paid" value="0" step="0.01" readonly>
+        </td>
+        
+      </tr>
+
+      <tr>
+      <td>Invoice No:</td>
+      
+      <td>
+      <input type="text" id="InvoiceNumber-input" name="Enter Invoice Number" value="N/A">
+      </td>
+      </tr>
+      
+      <tr>
+     <td>TIN:</td>
+     <td>
+      <input type="number" id="TIN-input" name="Tax Identification Number" value="0" step="0.01">
+     </td>
+      </tr>
+
+     <tr>
+     <td>A/C No:</td>
+     <td>
+      <input type="number" id="ACNO-input" name="Account Number" value="0" step="0.01">
+     </td>
+     <td>
+      <tsh>Bank Name:</tsh>
+      <input type="text" id="BANKNAME-input" name="Bank Name" value="N/A" step="0.01">
+     </td>
+     
+      </tr>
+
+     <tr>
+     <td>
+      <sh style="color: black; font-weight: bold;">WHT Exemption Status:</sh>
+      <label for="Exempt">Exempt</label>
+            <input type="radio" id="Exempt" name="WHT Exemption Status" value="Exempt">
+            <label for="non-Exempt">Non-Exempt</label>
+            <input type="radio" id="non-Exempt" name="WHT Exemption Status" value="non-Exempt">
+
+     </td>
+      </tr>
+
+     tr>
+     <td>
+      <sh style="color: black; font-weight: bold;">VAT WHT Exemption Status:</sh>
+      <label for="Exempt">Exempt</label>
+            <input type="radio" id="Exempt" name="VAT WHT Exemption Status" value="Exempt">
+            <label for="non-Exempt">Non-Exempt</label>
+            <input type="radio" id="non-Exempt" name="VAT WHT Exemption Status" value="non-Exempt">
+
+     </td>
+      </tr>
+
+     <tr>
+     <td>Notes</td>
+ 
+     <td>
+      <input type="text" id="Notes-input" name="Notes" value="N/A" step="0.01">
+     </td>
+      </tr>
+
+    </table>
+    </div>
+
+   
+  <div id="USD" class="tabcontent">
+
+  <form id="myForm" method="post" action="Connect2.php">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td>
+          <input type="text" id="Name-input" name="FirmName" value="N/A">
+        </td>
+      </tr>
+      <tr>
+        <td>Date</td>
+        <td>
+          <input type="date" id="Date-Period-input" name="Date_Period" value="N/A">
+        </td>
+      </tr>
+    </table>
+
+    <table border="1">
+      <tr>
+        <th>DETAILS</th>
+        <th>GROSS AMOUNT (USD)</th>
+        <th>Inc Tax WHT @ 6%/15% (USD)</th>
+        <th>VAT WHT @ 6%/18% (USD)</th>
+        <th>Net Amount Paid (USD)</th>
+      </tr>
+      <tr>
+        <td>
+          <label for="resident">Resident</label>
+            <input type="radio" id="resident" name="residency" value="resident">
+            <label for="non-resident">Non-Resident</label>
+            <input type="radio" id="non-resident" name="residency" value="non-resident">
+
+        </td>
+        <td>
+          <input type="number" id="GrossAmount-input" name="Gross Amount" value="0" step="0.01">
+        </td>
+        <td>
+          <input type="number" id="IncTaxWHT-input" name="Income Tax WHT @ 6%" value="0" step="0.01" readonly>
+        </td>
+        <td>
+          <input type="number" id="VATWHT-input" name="VAT WHT @ 6%" value="0" step="0.01" readonly>
+        </td>
+        <td>
+          <input type="number" id="NetAmountPaid-input" name="Net Amount Paid" value="0" step="0.01" readonly>
+        </td>
+        
+      </tr>
+
+      <tr>
+      <td>Invoice No:</td>
+      
+      <td>
+      <input type="text" id="InvoiceNumber-input" name="Enter Invoice Number" value="N/A">
+      </td>
+      </tr>
+      
+      <tr>
+     <td>TIN:</td>
+     <td>
+      <input type="number" id="TIN-input" name="Tax Identification Number" value="0" step="0.01">
+     </td>
+      </tr>
+
+     <tr>
+     <td>A/C No:</td>
+     <td>
+      <input type="number" id="ACNO-input" name="Account Number" value="0" step="0.01">
+     </td>
+     <td>
+      <tsh>Bank Name:</tsh>
+      <input type="text" id="BANKNAME-input" name="Bank Name" value="N/A" step="0.01">
+     </td>
+     
+      </tr>
+
+     <tr>
+     <td>
+      <sh style="color: black; font-weight: bold;">WHT Exemption Status:</sh>
+      <label for="Exempt">Exempt</label>
+            <input type="radio" id="Exempt" name="WHT Exemption Status" value="Exempt">
+            <label for="non-Exempt">Non-Exempt</label>
+            <input type="radio" id="non-Exempt" name="WHT Exemption Status" value="non-Exempt">
+
+     </td>
+      </tr>
+
+     tr>
+     <td>
+      <sh style="color: black; font-weight: bold;">VAT WHT Exemption Status:</sh>
+      <label for="Exempt">Exempt</label>
+            <input type="radio" id="Exempt" name="VAT WHT Exemption Status" value="Exempt">
+            <label for="non-Exempt">Non-Exempt</label>
+            <input type="radio" id="non-Exempt" name="VAT WHT Exemption Status" value="non-Exempt">
+
+     </td>
+      </tr>
+
+     <tr>
+     <td>Notes</td>
+ 
+     <td>
+      <input type="text" id="Notes-input" name="Notes" value="N/A" step="0.01">
+     </td>
+      </tr>
+
+    </table>
+
+    </div>
+    
+    <table>
+  <tr>
+    <td>
+      <a href="exemptionList (3).htm">WHT & VAT WHT Exemption List 2023</a>
+    </td>
+  </tr>
+</table>
+
+    
+    <button id="toggleFormatBtn" type="button">Toggle Format</button>
+    
+    <tr>
+     <tr style="background-color: grey;">
+      <td>Clear Data</td>
+     <td>
+      <input type="reset" value="Clear">
+     </td>
+
+    </tr>
+    <button onclick="printAsPDF()">Save as PDF</button>
+
+
+
+   <script>
+   function printAsPDF() {
+  // Set the page to print in landscape orientation
+  var printOptions = {
+    orientation: "landscape"
+  };
+  
+  // Print the current page as a PDF
+  window.print();
+}
+</script>
+
+
+    <script>
+     var table = document.getElementById("myForm").querySelector("table");
+      var toggleFormatBtn = document.getElementById("toggleFormatBtn");
+
+      toggleFormatBtn.addEventListener("click", function () {
+        if (table.classList.contains("vertical")) {
+          table.classList.remove("vertical");
+          toggleFormatBtn.innerText = "Toggle to Vertical Format";
+        } else {
+          table.classList.add("vertical");
+          toggleFormatBtn.innerText = "Toggle to Tabular Format";
+        }
+      });
+     </script>
+
+    <script>  
+  var GrossAmountInput = document.getElementById('GrossAmount-input');
+  var IncTaxWHTInput = document.getElementById('IncTaxWHT-input');
+  var VATWHTInput = document.getElementById('VATWHT-input');
+  var NetAmountPaidInput = document.getElementById('NetAmountPaid-input');
+  var residencyRadios = document.getElementsByName('residency');
+  var VATWHTExemptionStatusRadios = document.getElementsByName('VAT WHT Exemption Status');
+  var WHTExemptionStatusRadios = document.getElementsByName('WHT Exemption Status');
+
+  
+  function calculateWHTAndNetAmountPaid() {
+  var grossAmount = parseFloat(GrossAmountInput.value);
+  var residency = "";
+  var incTaxWHT = 0;
+  var vatWHT = 0;
+
+  for (var i = 0; i < residencyRadios.length; i++) {
+    if (residencyRadios[i].checked) {
+      residency = residencyRadios[i].value;
+      break;
+    }
+  }
+
+  if (residency === "resident") {
+    incTaxWHT = grossAmount * 0.06;
+    vatWHT = grossAmount * 0.06;
+  } else if (residency === "non-resident") {
+    incTaxWHT = grossAmount * 0.15;
+    vatWHT = grossAmount * 0.18;
+  }
+
+  IncTaxWHTInput.value = incTaxWHT.toFixed(2);
+  VATWHTInput.value = vatWHT.toFixed(2);
+  NetAmountPaidInput.value = (grossAmount - incTaxWHT - vatWHT).toFixed(2);
+}
+
+GrossAmountInput.addEventListener('input', calculateWHTAndNetAmountPaid);
+for (var i = 0; i < residencyRadios.length; i++) {
+  residencyRadios[i].addEventListener('change', calculateWHTAndNetAmountPaid);
+}
+
+
+
+  GrossAmountInput.addEventListener('input', function() {
+  var inputValue = GrossAmountInput.value * 0.06;
+  var vatExempt = false;
+  var whtExempt = false;
+
+  for (var i = 0; i < VATWHTExemptionStatusRadios.length; i++) {
+    if (VATWHTExemptionStatusRadios[i].checked && VATWHTExemptionStatusRadios[i].value === 'Exempt') {
+      vatExempt = true;
+      break;
+    }
+  }
+
+  if (vatExempt) {
+    VATWHTInput.value = 0;
+  } else {
+    VATWHTInput.value = GrossAmountInput.value * 0.06;
+  }
+
+  for (var i = 0; i < WHTExemptionStatusRadios.length; i++) {
+    if (WHTExemptionStatusRadios[i].checked && WHTExemptionStatusRadios[i].value === 'Exempt') {
+      whtExempt = true;
+      break;
+    }
+  }
+
+  if (whtExempt) {
+    IncTaxWHTInput.value = 0;
+  } else {
+    IncTaxWHTInput.value = inputValue;
+  }
+
+  NetAmountPaidInput.value = GrossAmountInput.value - IncTaxWHTInput.value - VATWHTInput.value;
+});
+
+for (var i = 0; i < VATWHTExemptionStatusRadios.length; i++) {
+  VATWHTExemptionStatusRadios[i].addEventListener('change', function() {
+    GrossAmountInput.dispatchEvent(new Event('input'));
+  });
+}
+
+for (var i = 0; i < WHTExemptionStatusRadios.length; i++) {
+  WHTExemptionStatusRadios[i].addEventListener('change', function() {
+    GrossAmountInput.dispatchEvent(new Event('input'));
+  });
+}
+</script>
+
+
+<script>
+	function openTab(evt, tabName) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		document.getElementById(tabName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	</script>   
+
+    <footer></footer>
+  </form>
+</body>
+</html>  
